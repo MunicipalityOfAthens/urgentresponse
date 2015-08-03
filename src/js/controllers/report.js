@@ -24,7 +24,7 @@ $scope.fixDate = function(str){
   }
 
 //if ($scope.online){
-//                        $http({method: 'GET', url: 'http://devel.cityofathens.gr/khe/urgentresponse/open311/requests/'+$scope.service_request_id+'.json'})
+//                        $http({method: 'GET', url: '_REQUESTS_/'+$scope.service_request_id+'.json'})
 //                            .success(function(apirequest, status, headers, config) {
 //                             $scope.request = apirequest[0];                            
 //                            })
