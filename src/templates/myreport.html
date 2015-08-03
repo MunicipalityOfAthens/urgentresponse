@@ -1,0 +1,84 @@
+<!--
+This file is part of UrgentRespose.
+
+    UrgentRespose is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    UrgentRespose is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<div ui-content-for="title">
+  <span>Η Αναφορά μου</span>
+</div>
+
+<div class="scrollable" ng-controller="ReportController">
+  <div class="scrollable-content section">
+    
+    
+<div class="list-group">
+      
+      <div class="list-group-item list-group-item-home" >
+        <h2>Αναφορά 
+            <small>{{service_request_id}}
+            <li ng-show="request.status=='open'" class="fa fa-pause pull-right" style="color:red"></li>
+            <li ng-show="request.status=='closed'" class="fa fa-check pull-right" style="color:green"></li></small>
+        </h2>
+      </div>
+  
+      <div class="list-group-item list-group-item-home media" ng-show="request.service_name">
+        <div class="media-body"><h3 class="media-heading"><i class="fa fa-tag feature-icon text-primary"></i> Κατηγορία</h3>
+            {{request.service_name}}
+        </div>
+      </div>
+
+      <div class="list-group-item list-group-item-home media" ng-show="request.description">
+        <div class="media-body"><h3 class="media-heading"><i class="fa fa-comment feature-icon text-primary"></i> Περιγραφή</h3>
+            {{request.description}}
+        </div>
+      </div>
+      
+      <div class="list-group-item list-group-item-home media" ng-show="request.requested_datetime">
+        <div class="media-body"><h3 class="media-heading"><i class="fa fa-calendar-o feature-icon text-primary"></i> Ημερομηνία Υποβολής</h3>
+            {{fixDate(request.requested_datetime) | date:'dd-MM-yyyy HH:mm:ss' }}
+        </div>
+      </div>
+      
+      <div class="list-group-item list-group-item-home media" ng-show="request.updated_datetime&&request.updated_datetime!==request.requested_datetime">
+        <div class="media-body"><h3 class="media-heading"><i class="fa fa-calendar feature-icon text-primary"></i> Τελευταία ενημέρωση</h3>
+            {{fixDate(request.updated_datetime) | date:'dd-MM-yyyy HH:mm:ss'  }}
+        </div>
+      </div>
+  
+  
+      <div class="list-group-item list-group-item-home media" ng-show="request.agency_responsible">
+        <div class="media-body"><h3 class="media-heading"><i class="fa fa-cogs feature-icon text-primary"></i> Φορέας</h3>
+            {{request.agency_responsible}}
+        </div>
+      </div>
+  
+      <div class="list-group-item list-group-item-home media" ng-show="request.service_notice">
+        <div class="media-body"><h3 class="media-heading"><i class="fa fa-exclamation-triangle feature-icon text-primary"></i> Σημειώσεις</h3>
+            {{request.service_notice}}
+        </div>
+      </div>  
+  
+  </div>  
+
+<hr />
+<button ng-click="delRequest()" ng-class="{'btn-warning': delcount>0,'btn-danger': delcount>1}" class="btn btn-block"> Αφαίρεση (πατήστε δυό φορες)</button>      
+
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      
+</div>
+
+
+
+</div>

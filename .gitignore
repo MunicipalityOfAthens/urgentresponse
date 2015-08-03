@@ -1,0 +1,13 @@
+*.bak
+*.sh
+urgentresponse.geany
+/trash
+/node_modules
+/bonita
+/demo
+/hooks
+/bower_components
+/plugins/*
+/platforms/*
+config.js
+/www/*

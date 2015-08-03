@@ -1,0 +1,83 @@
+<!--
+This file is part of UrgentRespose.
+
+    UrgentRespose is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    UrgentRespose is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<div ui-content-for="title">
+  <span>Αναφορά</span>
+</div>
+<div ui-if='nosuccess' ui-state='nosuccess' ui-turn-on='nosuccess' class="navbar navbar-app navbar-absolute-top">
+   <div class="alert alert-danger alert-dismissible" role="alert">
+      <button  class="close" ui-turn-off='nosuccess'>&times;</button>
+      <strong>Προσοχή!</strong> Η αναφορά δεν εστάλη,λόγω του λάθους: <i>{{POSTerrorDescription}}</i>, διορθώστε πιθανό πρόβλημα ή προσπαθήστε αργότερα.
+   </div>
+</div>
+<div class="scrollable">
+  <div class="scrollable-content section">
+  <form role="form">
+    <fieldset>
+      <legend>Αναφορά</legend>
+        <div class="form-group" ng-controller="MarkerController">
+            <leaflet defaults="defaults" markers="markers" center="center" label="Τοποθεσία" ng-model ="open311.map" class="leafmap"></leaflet>
+                <a href='' ng-disabled="locationsearch" class="btn customrefresh" ng-click="refresh()"><i class="fa fa-refresh"></i></a> 
+        </div>
+        <div class="form-group">
+            <button ng-click="getPhoto()" class="btn btn-default btn-block">
+                 <i ng-show="open311.media_url==''" style="height:30px;" class="fa fa-camera pull-left"></i>
+                 <img ng-show="open311.media_url!=''" ng-src="open311.media_url" src="{{open311.media_url}}" height=30px style="height:30px;" class="img-thumbnail pull-left" /> Φωτογραφία </button>
+        </div>
+        <div class="form-group">
+          <select  ng-model ="open311.service_code" label="Κατηγορία" name="service_code" id="service_code" class="form-control customselect">
+             <option value="">Επιλέξτε Κατηγορία </option>
+             <option ng:repeat="service in services" value="{{service.service_code}}">{{service.service_name}}</option>
+          </select>
+         </div><a id="description_hash"></a>
+        <div class="form-group">
+          <textarea placeholder="Περιγράψτε το πρόβλημα" ng-focus="scrolltextin('description_hash')" type="text" ng-model="open311.description"  label="Περιγραφή" class="form-control customtextarea" name="Περιγραφή" id="citizen_description"></textarea>
+        </div><a id="email_hash"></a>
+        <div class="form-group">
+            <div class="input-group" ng-show="allow.email||open311.email==''">
+             <span class="input-group-addon"><i class="fa fa-at"></i></span>
+               <input ng-focus="scrolltextin('email_hash')" label="email {{open311.emai}}" type="email" ng-model="open311.email" class="form-control"  />
+            </div>
+        </div><a id="phone_hash"></a>
+        <div class="form-group">
+            <div class="input-group" ng-show="allow.phone">
+             <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+               <input ng-focus="scrolltextin('phone_hash')" label="Τηλέφωνο {{open311.phone}}" type="phone" ng-model="open311.phone" class="form-control" />
+            </div>
+        </div>
+    </fieldset>
+
+
+<div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">ΠΡΟΣΟΧΗ:</h3>
+        </div>
+        <div class="panel-body">
+         <strong> Η άσκοπη και χωρίς αντικείμενο κινητοποίηση των ειδικών ομάδων αντιμετώπισης εκτάκτων περιστατικών μπορεί να αποβεί μοιραία για την συνολική αντιμετώπιση. Για τον λόγο αυτό κάνετε χρήση της συγκεκριμένης υπηρεσίας υπεύθυνα, με σύνεση και επίγνωση των συνεπειών.</strong>
+        </div>
+</div>
+
+
+       <button ng-disabled="online==false||open311.service_code==''||open311.email==undefined||open311.email==''||open311.lat==''||open31.long==''" ng-click="post()" class="btn btn-primary navbar-absolute-bottom"><i class="fa fa-cloud-upload pull-left"></i> Αποθήκευση </button>
+
+
+  </form>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  </div>
+</div>
+

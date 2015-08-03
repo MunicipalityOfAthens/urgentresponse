@@ -1,0 +1,24 @@
+Municipality of Athens
+Copyright (c) 2015.
+All rights reserved.
+
+Open Source License
+------------------------------------------------------------------------------------------
+This version of urgentresonse is licensed under the terms of the Open
+Source GPL 3.0 license.
+
+http://www.gnu.org/licenses/gpl.html
+
+Third Party Content
+------------------------------------------------------------------------------------------
+The following third party software is used with urgentresponse and is
+provided under other licenses and/or has source available from other locations.
+
+>phonegap  License: Apache License V2.0  
+>Angularjs License: MIT  
+>angular leaflet directive License: MIT  
+>Mobile Angular UI License: MIT  
+>leafletjs License: custom  
+
+--
+THIS SOFTWARE IS DISTRIBUTED "AS-IS" WITHOUT ANY WARRANTIES, CONDITIONS AND REPRESENTATIONS WHETHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION THE IMPLIED WARRANTIES AND CONDITIONS OF MERCHANTABILITY, MERCHANTABLE QUALITY, FITNESS FOR A PARTICULAR PURPOSE, DURABILITY, NON-INFRINGEMENT, PERFORMANCE AND THOSE ARISING BY STATUTE OR FROM CUSTOM OR USAGE OF TRADE OR COURSE OF DEALING.

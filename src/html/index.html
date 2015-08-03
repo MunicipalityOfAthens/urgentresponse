@@ -1,0 +1,178 @@
+<!--
+This file is part of UrgentRespose.
+
+    UrgentRespose is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    UrgentRespose is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Αιτήματα άμεσης επέμβασης</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
+    <link rel="stylesheet" href="css/app.min.css" />
+    <link rel="stylesheet" href="css/responsive.min.css" />
+   
+    <!-- inject:js -->
+   
+    <script src="js/app.min.js"></script>
+   
+  </head>
+  <body ng-app="urgentresponse" ng-controller="MainController">
+
+    <!-- Sidebars -->
+    <div ng-include="'sidebar.html'" class="sidebar sidebar-left" ui-track-as-search-param='true' ></div>
+
+    <div class="app">
+
+      <!-- Navbars -->
+      <div class="navbar navbar-app navbar-absolute-top">
+        <div class="navbar-brand navbar-brand-center" yield-to="title">
+          <span><img src="images/30px.png"/></span>
+        </div>
+        <div class="btn-group pull-left">
+          <div ui-toggle="uiSidebarLeft" class="btn btn-navbar sidebar-toggle">
+            <i class="fa fa-bars"></i> Επιλογές
+          </div>
+        </div>
+
+      <!-- Dropdown -->
+      <div class="btn-group pull-right toggleable-dropdown">
+       <button type="button" class="btn btn-default dropdown-toggle" toggle ui-turn-on='switchDropdown' ><i class="fa fa-gear"></i><span class="caret"></span></button>
+        
+        
+        <div class="dropdown-menu" role="menu" ui-outer-click="Ui.turnOff('switchDropdown')" ui-outer-click-if="Ui.active('switchDropdown')" ui-state="switchDropdown" ui-show="switchDropdown" >
+              <div class="list-group">
+              
+                <div class="list-group-item list-group-item-home media">
+                  <div class="media-body"><h4 class="media-heading pull-left"><i class="fa fa-wifi feature-icon"></i><small> WiFi</small></h4>
+                    <ui-switch label="Μόνο WiFi" ng-model='allow.wifi' class="pull-right customswitch"></ui-switch>
+                  </div>
+                </div>
+              
+                <div class="list-group-item list-group-item-home media">
+                  <div class="media-body"><h4 class="media-heading pull-left"><i class="fa fa-mobile feature-icon"></i><small> Τηλέφωνο</small></h4>
+                    <ui-switch label="Τροποπoίηση τηλεφώνου" ng-model='allow.phone' class="pull-right customswitch"></ui-switch>
+                  </div>
+                </div>             
+
+                <div class="list-group-item list-group-item-home media">
+                  <div class="media-body"><h4 class="media-heading pull-left"><i class="fa fa-at feature-icon"></i><small> email</small></h4>
+                   <ui-switch label="Τροποπoίηση email" ng-model='allow.email' class="pull-right customswitch"></ui-switch>
+                  </div>
+                </div>
+              </div>
+             
+       </div>
+     </div>
+
+<div class="btn-group pull-right">
+        <a href="" ng-show="locationsearch==true" ui-turn-on="onlocationsearch" class="btn btn-default"><i class="fa fa-compass blink_me"></i></a>
+</div>
+
+<div class="btn-group pull-right">
+        <a href="" ng-show="online==false" ui-turn-on="nointernet" class="btn btn-danger"><i class="fa fa-exclamation-circle text-danger blink_me"></i></a>
+</div>
+ 
+      </div>
+     
+      <div class="navbar navbar-app navbar-absolute-bottom">
+        <div class="btn-group justified">
+          <a href="#/about" class="btn btn-navbar"><i class="fa fa-exclamation-circle fa-navbar"></i> ΠΕΡΙ</a>
+           <a href="#/source" class="btn btn-navbar"><i class="fa fa-github fa-navbar"></i> ΚΩΔΙΚΑΣ</a>
+          <a href="#/help" class="btn btn-navbar"><i class="fa fa-question-circle fa-navbar"></i> ΒΟΗΘΕΙΑ</a>
+        </div>
+      </div>
+      
+      <!-- App Body -->
+      <div class="app-body" ng-class="{loading: loading}">
+        <div ng-show="loading" class="app-content-loading">
+          <i class="fa fa-spinner fa-spin loading-spinner"></i>
+        </div>
+        <div class="app-content">
+          <ng-view></ng-view>
+        </div>
+      </div>
+
+
+</div><!-- ~ .app -->
+
+<!-- Modals and Overlays -->
+
+  <!-- On loaction search modal -->
+  <div  class="modal" ui-if='onlocationsearch' ui-state='onlocationsearch' >
+    <div class="modal-backdrop in"></div>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" 
+                  ui-turn-off="onlocationsearch">&times;</button>
+          <h4 class="modal-title">Αναζητηση τοποθεσιας</h4>
+        </div>
+        <div class="modal-body">
+          <p> Η εφαρμογή προσπαθεί να εντόπισή την τοποθεσία της συσκευής, αν αυτό το εικονίδιο <i class="fa fa-compass"></i> είναι εμφανές για αρκετή ώρα θα πρέπει  να ελέγξετε ότι έχετε ρύθμισή την συσκευή για πρόσβαση στην τοποθεσία και ότι βρίσκεται σε σημείο που λαμβάνεται επαρκές σήμα από τους δορυφόρους του συστήματος GPS</p>
+        </div>
+        <div class="modal-footer">
+          <button ui-turn-off="onlocationsearch" class="btn btn-default">Εντάξει</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- No internet modal -->
+  <div  class="modal" ui-if='nointernet' ui-state='nointernet' >
+    <div class="modal-backdrop in"></div>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" 
+                  ui-turn-off="nointernet">&times;</button>
+          <h4 class="modal-title">Χωρίς σύνδεση</h4>
+        </div>
+        <div class="modal-body">
+          <p> Δεν υπάρχει ενεργή σύνδεση στο διαδίκτυο, δεν ειναι δυνατή η αποστολή αναφορών.</p>
+        </div>
+        <div class="modal-footer">
+          <button ui-turn-off="nointernet" class="btn btn-default">Εντάξει</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Request Success--->
+  <div  class="modal modal-overlay" ui-if='requestsuccess' ui-state='requestsuccess' >
+    <div class="modal-backdrop in"></div>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" 
+                  ui-turn-off="requestsuccess">&times;</button>
+          <h4 class="modal-title">Ευχαριστούμε</h4>
+        </div>
+        <div class="modal-body">
+          <p>Η Αναφορά σας υποβλήθηκε με κωδικό <strong>{{service_request_id}}</strong>.</p>
+        </div>
+        <div class="modal-footer">
+          <button ui-turn-off="requestsuccess"  class="btn btn-default">Εντάξει</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- -->
+
+  </body>
+</html>
