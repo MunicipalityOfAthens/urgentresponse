@@ -9,7 +9,7 @@
     "mobile-angular-ui": "1.2",
     "font-awesome": "4.x",
     "bootstrap": "3.2.0",
-    "angular-leaflet-directive": "0.7.x",
+    "angular-leaflet-directive": "0.8.x",
     "getAccurateCurrentPosition": "https://github.com/gwilson/getAccurateCurrentPosition.git"
   },
   "resolutions": {
