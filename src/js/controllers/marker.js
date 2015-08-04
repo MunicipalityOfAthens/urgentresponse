@@ -93,10 +93,12 @@ $scope.$on('leafletDirectiveMap.click', function(event,pos){
       grandfather.locationsearch=false;
 });
 /**/
-$scope.$on('leafletDirectiveMarker.dragend', function(event){
-    grandfather.open311.lat=$scope.markers.reportMarker.lat;
-    grandfather.open311.long=$scope.markers.reportMarker.lng;
-    grandfather.locationsearch=false;
+$scope.$on('leafletDirectiveMarker.dragend', function(event,pos){
+      $scope.markers.reportMarker.lat=pos.leafletEvent.latlng.lat;
+      $scope.markers.reportMarker.lng=pos.leafletEvent.latlng.lng;
+      grandfather.open311.lat=$scope.markers.reportMarker.lat;
+      grandfather.open311.long=$scope.markers.reportMarker.lng;
+      grandfather.locationsearch=false;
     });
 /**/
 $scope.$on('leafletDirectiveMap.locationfound', function(event){
