@@ -19,16 +19,12 @@ angular.module('urgentresponse.services.Services', []).factory('getServices', fu
   return function(done) {
     $http({method: 'GET', url: '_SERVICES_'})
         .success(function(apiservices, status, headers, config) {
-           console.log("on getservices success");
            done(apiservices); //service_code  //service_name  //description //metadata //type //keywords
         })
         .error(function(data, status, headers, config) {
             console.log("on getservices failure");
-            console.log(data);
-            console.log(status);
-            console.log(headers);
-            console.log(config);
-           throw new Error('Unable to get services list');
+           //console.log(data,status,headers,config);
+           done("failure");
         });
   };
 });

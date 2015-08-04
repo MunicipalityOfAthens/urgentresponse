@@ -188,7 +188,8 @@ $scope.post = function(){
          $rootScope.POSTerrorCode = data[0].code;
          $rootScope.POSTerrorDescription = data[0].description;
          $rootScope.loading = false;
-         $rootScope.Ui.toggle('nosuccess');
+         //$rootScope.Ui.toggle('nosuccess');
+         alert("Υπήρξε πρόβλημα σύνδεσης, παρακαλώ κάντε την αναφορά σας τηλεφωνικά στον αριθμό 1595");
           throw new Error('Unable to post request');
         });
 }

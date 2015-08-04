@@ -44,7 +44,12 @@ if (on=="phonegap"){
 /**/
 if (online){
 getServices(function(services){
-             if (online) $rootScope.services=services;
+             console.log("services = ",services);
+            if (services!="failure"){
+             $rootScope.services=services;
+            } else {
+                alert("Υπήρξε πρόβλημα σύνδεσης, παρακαλώ κάντε την αναφορά σας τηλεφωνικά στον αριθμό 1595");
+             }
            });
 }
 
