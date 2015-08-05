@@ -8,6 +8,7 @@
         Συστήματα Ηλεκτρονικής Διακυβέρνησης Δήμου Αθηναίων
     </author>
     <content src="start.html" />
+    <preference name='phonegap-version' value='cli-5.1.1' />
     <preference name="permissions" value="none" />
     <preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />
