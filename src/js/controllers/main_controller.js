@@ -173,16 +173,13 @@ $scope.getPhoto = function() {
 //Post
 $scope.post = function(){
     $rootScope.loading = true;
-    console.log($scope.open311);
     postRequest($scope.open311).success(function (responce, status, headers, config) {     
     $rootScope.loading = false;
     console.log(responce); //TODO na koita mipos exei error -1 to responce[0].service_request_id
-    
     $rootScope.service_request_id = responce[0].service_request_id;//TODO pio sosta???
     $scope.saveToDB($rootScope.service_request_id,$scope.open311);
     $rootScope.Ui.toggle('requestsuccess'); //TODO toggle error an exei error
     $scope.reset();
-    
     }).error(function(data, status, headers, config) {
          console.log("Post Error",data, status, headers, config);
          $rootScope.POSTerrorCode = data[0].code;
@@ -223,12 +220,8 @@ DB.init(function(result){
     DB.query('SELECT * FROM ALLOW WHERE id=631') //TODO ORDER BY ROWID DESC set focus on latest by set focus true???
         .then(function(result){
             var Allow = DB.fetch(result);
-            console.log("ALLOW RESULT",result);  
-            
             if (Allow!=null&&Allow.object!="undefined"){
-              console.log("ALLOW",Allow.object); 
               $rootScope.allow = JSON.parse(Allow.object);
-            
             }else
               $rootScope.allow = {
                                   wifi:false,
