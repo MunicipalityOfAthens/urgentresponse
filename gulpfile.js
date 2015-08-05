@@ -301,6 +301,7 @@ gulp.task('weinre', function() {
 ======================================*/
 
 gulp.task('production', function(done) {
+  config.weinre = false;
   config.cleanlog = true;
   var tasks = ['html', 'fonts', 'images', 'less','js','res','icon'];
   seq('clean', tasks, done);
