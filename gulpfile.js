@@ -11,6 +11,7 @@ var config = {
   dest: 'www',
   cordova: true,
   minify_images: true,
+  cleanlog: false,
   
   vendor: {
     js: [
@@ -77,7 +78,8 @@ var gulp           = require('gulp'),
     streamqueue    = require('streamqueue'),
     rename         = require('gulp-rename'),
     path           = require('path');
-
+    gulpif         = require('gulp-if');
+    stripDebug     = require('gulp-strip-debug');
 
 /*================================================
 =            Report Errors to Console            =
@@ -257,6 +259,7 @@ gulp.task('js', function() {
     .pipe(replace('_MAPBOXID_', config.mapboxid))
     .pipe(replace('_SERVICES_', config.open311Services))
     .pipe(replace('_REQUESTS_', config.open311Requests))
+    .pipe(gulpif(config.cleanlog,stripDebug()))
     .pipe(uglify()) 
     .pipe(sourcemaps.write('.'))
     .pipe(rename({suffix: '.min'}))
@@ -294,6 +297,17 @@ gulp.task('weinre', function() {
 
 
 /*======================================
+=            Production Sequence            =
+======================================*/
+
+gulp.task('production', function(done) {
+  config.cleanlog = true;
+  var tasks = ['html', 'fonts', 'images', 'less','js','res','icon'];
+  seq('clean', tasks, done);
+});
+
+
+/*======================================
 =            Build Sequence            =
 ======================================*/
 
@@ -301,7 +315,6 @@ gulp.task('build', function(done) {
   var tasks = ['html', 'fonts', 'images', 'less','js','res','icon'];
   seq('clean', tasks, done);
 });
-
 
 /*====================================
 =            Default Task            =
