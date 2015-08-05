@@ -16,7 +16,7 @@ This file is part of UrgentRespose.
 */
 angular.module('urgentresponse.controllers.Main').controller("MarkerController", [ '$scope','$rootScope','$location','getGeolocation', function($scope,$rootScope,$location,getGeolocation) {
 var grandfather = $scope.$parent.$parent;
-
+console.log("grandfather open311",grandfather.open311);
    angular.extend($scope, {
         center: {
              autoDiscover: false,
@@ -44,11 +44,11 @@ var grandfather = $scope.$parent.$parent;
         },              
         events: {
             map: {
-                enable: ['click','locationfound','dragend'],
+                enable: [ 'click','locationfound' ],
                 logic: 'emit'
             },
             markers: {
-                enable: ['dargend'],
+                enable: [ 'dragend' ],
                 logic: 'emit'
                 }
         }
@@ -85,21 +85,25 @@ getGeolocation(function(Geoposition){
 }
 
 /**/
+$scope.$on('leafletDirectiveMarker.dragend', function(event,pos){
+      $scope.markers.reportMarker.lat=pos.model.lat;
+      $scope.markers.reportMarker.lng=pos.model.lng;
+      grandfather.open311.lat=$scope.markers.reportMarker.lat;
+      grandfather.open311.long=$scope.markers.reportMarker.lng;
+      grandfather.locationsearch=false;
+    console.log("drag grandfather open311",grandfather.open311);
+    });
+
+/**/
 $scope.$on('leafletDirectiveMap.click', function(event,pos){
       $scope.markers.reportMarker.lat=pos.leafletEvent.latlng.lat;
       $scope.markers.reportMarker.lng=pos.leafletEvent.latlng.lng;
       grandfather.open311.lat=$scope.markers.reportMarker.lat;
       grandfather.open311.long=$scope.markers.reportMarker.lng;
       grandfather.locationsearch=false;
+    console.log("click grandfather open311",grandfather.open311);
 });
-/**/
-$scope.$on('leafletDirectiveMarker.dragend', function(event,pos){
-      $scope.markers.reportMarker.lat=pos.leafletEvent.latlng.lat;
-      $scope.markers.reportMarker.lng=pos.leafletEvent.latlng.lng;
-      grandfather.open311.lat=$scope.markers.reportMarker.lat;
-      grandfather.open311.long=$scope.markers.reportMarker.lng;
-      grandfather.locationsearch=false;
-    });
+
 /**/
 $scope.$on('leafletDirectiveMap.locationfound', function(event){
       $scope.markers.reportMarker.lat=$scope.center.lat;

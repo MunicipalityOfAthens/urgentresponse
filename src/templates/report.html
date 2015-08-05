@@ -29,7 +29,7 @@ This file is part of UrgentRespose.
     <fieldset>
       <legend>Αναφορά</legend>
         <div class="form-group" ng-controller="MarkerController">
-            <leaflet defaults="defaults" markers="markers" center="center" label="Τοποθεσία" ng-model ="open311.map" class="leafmap"></leaflet>
+            <leaflet defaults="defaults" events="events" event-broadcast="events" markers="markers" center="center" label="Τοποθεσία" class="leafmap"></leaflet>
                 <a href='' ng-disabled="locationsearch" class="btn customrefresh" ng-click="refresh()"><i class="fa fa-refresh"></i></a> 
         </div>
         <div class="form-group">
