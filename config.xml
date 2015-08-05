@@ -49,17 +49,18 @@
 
     <plugin name="cordova-plugin-whitelist" version="1" />
      <allow-intent href="http://172.16.69.49:8001/*" />
-     <allow-intent href="http://*/*" />
-     <allow-intent href="https://*/*" />
+     <allow-intent href="http://*.cityofathens.gr/*" />
+     <allow-intent href="https://*.cityofathens.gr/*" />
+     <allow-intent href="http://cityofathens.gr/*" />
+     <allow-intent href="https://cityofathens.gr/*" />
      <allow-intent href="tel:*" />
      <allow-intent href="sms:*" />
      <allow-intent href="mailto:*" />
      <allow-intent href="geo:*" />
      <allow-navigation href="http://172.16.69.49:8001/*" />
      <allow-navigation href="https://cityofathens.gr/*" />
-     <allow-navigation href="https://www.cityofathens.gr/*" />
+     <allow-navigation href="https://*.cityofathens.gr/*" />
      <allow-navigation href="http://cityofathens.gr/*" />
-     <allow-navigation href="http://www.cityofathens.gr/*" />
      <allow-navigation href="http://*.cityofathens.gr/*" />
      <access origin="http://172.16.69.49:8001" />
      <access origin="http://*.cityofathens.gr" subdomains="true" />
