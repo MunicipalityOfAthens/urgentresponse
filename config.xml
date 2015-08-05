@@ -7,7 +7,7 @@
     <author email="p.skarvelis@daem.gr" href="http://www.daem.gr">
         Συστήματα Ηλεκτρονικής Διακυβέρνησης Δήμου Αθηναίων
     </author>
-    <content src="index.html" />
+    <content src="start.html" />
     <preference name="permissions" value="none" />
     <preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />
