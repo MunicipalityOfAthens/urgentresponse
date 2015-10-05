@@ -274,6 +274,8 @@ gulp.task('js', function() {
 gulp.task('config', function() {
      gulp.src(['config_template_.xml'])
     .pipe(replace('_DOMAIN_', config.open311ServerDomain))
+    .pipe(replace('_WEINREHOST_', config.weinre.boundHost))
+    .pipe(replace('_WEINREPORT_', config.weinre.httpPort))
     .pipe(rename('config.xml'))
     .pipe(gulp.dest('.'));
 });
