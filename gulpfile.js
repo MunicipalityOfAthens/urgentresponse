@@ -36,7 +36,8 @@ var config = {
   },
 
   weinre: {
-    httpPort:     8001,
+    enabled:      true,
+    httpPort:     '8001',
     boundHost:    'localhost',
     verbose:      false,
     debug:        false,
@@ -205,7 +206,7 @@ gulp.task('fonts', function() {
 
 gulp.task('html', function() {
   var inject = [];
-  if (typeof config.weinre === 'object') {
+  if (config.weinre.enabled === true) {
     inject.push('<script src="http://'+config.weinre.boundHost+':'+config.weinre.httpPort+'/target/target-script-min.js"></script>');
   }
   if (config.cordova) {
@@ -301,7 +302,7 @@ gulp.task('watch', function () {
 ===================================================*/
 
 gulp.task('weinre', function() {
-  if (typeof config.weinre === 'object') {
+  if (config.weinre.enabled === true) {
     var weinre = require('weinre');
     weinre.run(config.weinre);
   } else {
@@ -315,7 +316,7 @@ gulp.task('weinre', function() {
 ======================================*/
 
 gulp.task('production', function(done) {
-  config.weinre = false;
+  config.weinre.enabled = false;
   config.cleanlog = true;
   var tasks = ['config', 'html', 'fonts', 'images', 'less','js','res','icon'];
   seq('clean', tasks, done);
@@ -338,7 +339,7 @@ gulp.task('build', function(done) {
 gulp.task('default', function(done){
   var tasks = [];
 
-  if (typeof config.weinre === 'object') {
+  if (config.weinre.enabled === true) {
     tasks.push('weinre');
   };
 
