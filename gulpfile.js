@@ -7,7 +7,8 @@
 var config = {
   mapboxid: 'yourid',
   open311Services: 'http://yourserver/api/services.json',
-  open311Requests: 'http://yourserver/api/requests',    
+  open311Requests: 'http://yourserver/api/requests',
+  open311ServerDomain: 'yourserver',
   dest: 'www',
   cordova: true,
   minify_images: true,
@@ -267,6 +268,17 @@ gulp.task('js', function() {
 });
 
 
+/*====================================================================
+=            Server Domain On config.xml                             =
+====================================================================*/
+gulp.task('config', function() {
+     gulp.src(['config_template_.xml'])
+    .pipe(replace('_DOMAIN_', config.open311ServerDomain))
+    .pipe(rename('config.xml'))
+    .pipe(gulp.dest('.'));
+});
+
+
 /*===================================================================
 =            Watch for source changes and rebuild/reload            =
 ===================================================================*/
@@ -303,7 +315,7 @@ gulp.task('weinre', function() {
 gulp.task('production', function(done) {
   config.weinre = false;
   config.cleanlog = true;
-  var tasks = ['html', 'fonts', 'images', 'less','js','res','icon'];
+  var tasks = ['config', 'html', 'fonts', 'images', 'less','js','res','icon'];
   seq('clean', tasks, done);
 });
 
@@ -313,7 +325,7 @@ gulp.task('production', function(done) {
 ======================================*/
 
 gulp.task('build', function(done) {
-  var tasks = ['html', 'fonts', 'images', 'less','js','res','icon'];
+  var tasks = ['config','html', 'fonts', 'images', 'less','js','res','icon'];
   seq('clean', tasks, done);
 });
 

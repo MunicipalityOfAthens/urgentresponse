@@ -11,3 +11,4 @@ urgentresponse.geany
 /platforms/*
 config.js
 /www/*
+/config.xml

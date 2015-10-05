@@ -63,7 +63,7 @@
      <allow-navigation href="https://*._DOMAIN_/*" />
      <allow-navigation href="http://_DOMAIN_/*" />
      <allow-navigation href="http://*._DOMAIN_/*" />
-     <access origin="http://172.16.69.49:8001" />
+     <access origin="http://_WEINREHOST_:_WEINREPORT_" />
      <access origin="http://*._DOMAIN_" subdomains="true" />
      <access origin="https://*._DOMAIN_" subdomains="true" />
      <access origin="http://*.openstreetmap.org" subdomains="true" />
