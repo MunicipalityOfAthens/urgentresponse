@@ -22,7 +22,7 @@ angular.module('urgentresponse.services.Services', []).factory('getServices', fu
            done(apiservices); //service_code  //service_name  //description //metadata //type //keywords
         })
         .error(function(data, status, headers, config) {
-            console.log("on getservices failure");
+            console.log("on getservices failure",data,status,headers,config);
            //console.log(data,status,headers,config);
            done("failure");
         });
